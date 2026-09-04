@@ -1,24 +1,15 @@
 #include<stdio.h>
-#include<common.h>
+#include<physics.h>
 
 int main()
 {
-	Battleship b;
-	b.notation = 'U';
-	b.x = 500;
-	b.y = 500;
-	b.vMax = 150;
-	b.alive = 1;
+	double r = calRange(100,45);
+	double t = timeOfFlight(100,45);
+	double d = distanceBetween(0, 0, 3, 4);
 
-	Escortship e;
-	e.id = 0;
-	e.type = TYPE_A;
-	e.x = 300;
-	e.y = 400;
-	e.alive = 1;
+	printf("Range at 100 m/s, 45 deg: %.2f\n", r);
+	printf("Time of flight: %.2f\n", t);
+	printf("Distance (0,0)-(3,4): %.2f (shuld be 5,00)\n", d);
 
-	printf("Battleship: %c at (%.1f, %.1f), alive = %d\n", b.notation, b.x, b.y, b.alive);
-	printf("Escort ship %d: type =%d at (%.1f, %.1f), alive = %d\n",e.id, e.type, e.x, e.y, e.alive);
-		
 	return 0;
 }
