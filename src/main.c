@@ -1,15 +1,22 @@
-#include<stdio.h>
-#include<physics.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "../include/common.h"
+#include "../include/battlefield.h"
 
-int main()
-{
-	double r = calRange(100,45);
-	double t = timeOfFlight(100,45);
-	double d = distanceBetween(0, 0, 3, 4);
+int main(void) {
+    srand((unsigned int)time(NULL));
+    EscortSpec specs[5];
+    initEscortSpecs(specs);
 
-	printf("Range at 100 m/s, 45 deg: %.2f\n", r);
-	printf("Time of flight: %.2f\n", t);
-	printf("Distance (0,0)-(3,4): %.2f (shuld be 5,00)\n", d);
+    Battleship b;
+    initBattleship(&b, 'U', 500, 500, 150);
+    printBattleship(&b);
 
-	return 0;
+    Escortship escorts[5];
+    for (int i = 0; i < 5; i++) {
+        generateEscortShip(&escorts[i], i, 1000, 150, specs);
+        printEscortShip(&escorts[i], specs);
+    }
+    return 0;
 }

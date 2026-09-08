@@ -15,6 +15,13 @@ typedef enum {
 	TYPE_E = 4,
 }EscortType;
 
+typedef struct {
+	char typeName[MAX_NAME_LEN];
+	char gunName[MAX_NAME_LEN];
+	double impactPower;
+	double angleRange;
+} EscortSpec;
+
 typedef struct{
 	char notation;
 	char name[MAX_NAME_LEN];
@@ -23,7 +30,9 @@ typedef struct{
 	double vMin;
 	double gamma;
 	double impactPower;
+	double damageTaken;
 	int alive;
+	int shotsFired;
 } Battleship;
 
 typedef struct {
@@ -34,6 +43,7 @@ typedef struct {
 	double angleMin, angleMax;
 	double impactPower;
 	double gamma;
+	double damageTaken;
 	int alive;
 	int hasFired;
 } Escortship;
