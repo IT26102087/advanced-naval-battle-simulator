@@ -10,6 +10,7 @@
 #include "../include/simulation.h"
 #include "../include/simulation1b.h"
 #include "../include/fileio.h"
+#include "../include/simulation2a.h"
 #include "../include/menu.h"
 
 static void clearInputBuffer(void) {
@@ -126,6 +127,29 @@ static void doPart1C(SimSettings *s) {
     printf("\nPress Enter to continue..."); getchar();
 }
 
+static void doPart2A(SimSettings *s) {
+    EscortSpec specs[5]; Battleship b; Escortship escorts[MAX_ESCORTS];
+    setupBattlefield(s, &b, escorts, specs);
+    printBattlefield(&b, escorts, s->N, specs);
+    saveInitialConditions("p2a_initial.txt", s->D, &b, escorts, s->N, specs);
+
+    printf("Enter TB (reload time in seconds) for the battleship: ");
+    double TB; scanf("%lf", &TB); clearInputBuffer();
+
+    BattleResult result;
+    runBattleWithReload(&b, escorts, s->N, TB, &result);
+
+    if (result.battleshipSunk)
+        printf("\nBattleship SUNK. Contributing escorts: %d, final blow by %d.\n",
+               result.numContributors, result.sunkByEscortId);
+    else
+        printf("\nBattleship survived with %.1f%% cumulative damage. Destroyed %d escorts in %.2f s.\n",
+               result.finalDamageOnB * 100, result.numHits, result.battleDuration);
+
+    saveBattleResult("p2a_result.txt", &result);
+    saveFinalConditions("p2a_result.txt", &b, escorts, s->N);
+    printf("\nPress Enter to continue..."); getchar();
+}
 static void showInstructions(void) {
     printf("\n----- Instructions -----\n");
     printf("Stationary Battleship (B) vs many stationary Escort ships (E).\n");
@@ -164,7 +188,7 @@ void runMainMenu(void) {
     while (choice != 5) {
         printf("\n===== Advanced Naval Battle Simulator =====\n");
         printf("1. Setup\n2. Run Part 1-A (single battle)\n3. Run Part 1-B (moving battleship)\n");
-        printf("4. Run Part 1-C (cumulative damage)\n5. Exit\n6. Instructions\n7. Statistics\nChoice: ");
+        printf("4. Run Part 1-C (cumulative damage)\n5. Exit\n6. Instructions\n7. Statistics\n8. Run Part 2-A (reload + strategy) \nChoice: ");
         int r = scanf("%d", &choice);
         if (r == EOF) { printf("\nInput ended.\n"); return; }
         if (r != 1) { clearInputBuffer(); continue; }
@@ -177,6 +201,7 @@ void runMainMenu(void) {
             case 5: printf("Goodbye!\n"); break;
             case 6: showInstructions(); choice = -1; break;
             case 7: showStatistics(); choice = -1; break;
+	    case 8: doPart2A(&s); choice = -1; break;
             default: printf("Invalid choice.\n");
         }
     }

@@ -1,0 +1,46 @@
+===== INITIAL BATTLEFIELD CONDITIONS =====
+Canvas: (0,0) to (1000.00,1000.00)
+
+--- Battleship ---
+Type: U (USS Iowa (BB-61))
+Position: (500.00, 500.00)
+Velocity range: 0.00 to 150.00
+Impact power: 1.000
+Gamma: 0.0118
+
+--- Escort Ships (5) ---
+
+Escort #0 [Type E - Japanese Kaibokan]
+  Position: (654.40, 276.86)
+  Velocity range: 54.56 to 131.95
+  Angle range: 7.49 to 77.49
+  Impact power: 0.040
+  Gamma: 0.1035
+
+Escort #1 [Type E - Japanese Kaibokan]
+  Position: (877.15, 814.92)
+  Velocity range: 30.23 to 95.57
+  Angle range: 11.33 to 81.33
+  Impact power: 0.040
+  Gamma: 0.1714
+
+Escort #2 [Type C - Matsu-class Destroyer]
+  Position: (596.70, 853.09)
+  Velocity range: 38.29 to 38.81
+  Angle range: 3.40 to 28.40
+  Impact power: 0.070
+  Gamma: 0.1143
+
+Escort #3 [Type D - F-class Escort Ships]
+  Position: (430.16, 571.81)
+  Velocity range: 15.60 to 76.01
+  Angle range: 3.15 to 53.15
+  Impact power: 0.050
+  Gamma: 0.1906
+
+Escort #4 [Type E - Japanese Kaibokan]
+  Position: (35.76, 505.90)
+  Velocity range: 26.97 to 39.08
+  Angle range: 15.66 to 85.66
+  Impact power: 0.040
+  Gamma: 0.0702
