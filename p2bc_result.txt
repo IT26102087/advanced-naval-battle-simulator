@@ -1,0 +1,25 @@
+===== BATTLE RESULT =====
+
+Battleship: SURVIVED
+Cumulative damage taken: 0.160 (of 1.0)
+Escort ships destroyed by B: 9
+Battle duration: 16.00 s
+
+  Escort 4 | range 119.39 | time to hit 0.00 s
+  Escort 2 | range 260.49 | time to hit 2.00 s
+  Escort 2 | range 260.49 | time to hit 4.00 s
+  Escort 3 | range 324.38 | time to hit 6.00 s
+  Escort 3 | range 324.38 | time to hit 8.00 s
+  Escort 0 | range 461.08 | time to hit 10.00 s
+  Escort 0 | range 461.08 | time to hit 12.00 s
+  Escort 1 | range 503.51 | time to hit 14.00 s
+  Escort 1 | range 503.51 | time to hit 16.00 s
+
+===== FINAL CONDITIONS =====
+Battleship alive: yes | damage taken: 0.160
+Escort ships alive: 0 / 5
+  Escort #0: destroyed
+  Escort #1: destroyed
+  Escort #2: destroyed
+  Escort #3: destroyed
+  Escort #4: destroyed

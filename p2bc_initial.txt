@@ -1,0 +1,46 @@
+===== INITIAL BATTLEFIELD CONDITIONS =====
+Canvas: (0,0) to (1000.00,1000.00)
+
+--- Battleship ---
+Type: U (USS Iowa (BB-61))
+Position: (500.00, 500.00)
+Velocity range: 0.00 to 150.00
+Impact power: 1.000
+Gamma: 0.0022
+
+--- Escort Ships (5) ---
+
+Escort #0 [Type D - F-class Escort Ships]
+  Position: (926.28, 675.71)
+  Velocity range: 11.18 to 37.44
+  Angle range: 29.44 to 79.44
+  Impact power: 0.050
+  Gamma: 0.1529
+
+Escort #1 [Type D - F-class Escort Ships]
+  Position: (883.19, 826.64)
+  Velocity range: 48.14 to 79.93
+  Angle range: 7.50 to 57.50
+  Impact power: 0.050
+  Gamma: 0.1585
+
+Escort #2 [Type A - 1936A-class Destroyer]
+  Position: (573.02, 750.04)
+  Velocity range: 100.50 to 180.00
+  Angle range: 33.64 to 53.64
+  Impact power: 0.080
+  Gamma: 0.0641
+
+Escort #3 [Type B - Gabbiano-class Corvette]
+  Position: (597.77, 190.71)
+  Velocity range: 3.31 to 9.98
+  Angle range: 15.08 to 45.08
+  Impact power: 0.060
+  Gamma: 0.1478
+
+Escort #4 [Type B - Gabbiano-class Corvette]
+  Position: (615.25, 468.84)
+  Velocity range: 25.32 to 132.06
+  Angle range: 23.71 to 53.71
+  Impact power: 0.060
+  Gamma: 0.1333

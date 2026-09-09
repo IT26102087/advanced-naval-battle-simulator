@@ -11,6 +11,7 @@
 #include "../include/simulation1b.h"
 #include "../include/fileio.h"
 #include "../include/simulation2a.h"
+#include "../include/simulation2b.h"
 #include "../include/menu.h"
 
 static void clearInputBuffer(void) {
@@ -150,6 +151,45 @@ static void doPart2A(SimSettings *s) {
     saveFinalConditions("p2a_result.txt", &b, escorts, s->N);
     printf("\nPress Enter to continue..."); getchar();
 }
+static void doPart2BC(SimSettings *s) {
+    EscortSpec specs[5]; Battleship b; Escortship escorts[MAX_ESCORTS];
+    setupBattlefield(s, &b, escorts, specs);
+    printBattlefield(&b, escorts, s->N, specs);
+    saveInitialConditions("p2bc_initial.txt", s->D, &b, escorts, s->N, specs);
+
+    printf("Enter TB (battleship reload time): ");
+    double TB; scanf("%lf", &TB); clearInputBuffer();
+
+    double TE[5];
+    char *typeNames[5] = {"A", "B", "C", "D", "E"};
+    for (int i = 0; i < 5; i++) {
+        printf("Enter TE for escort type %s: ", typeNames[i]);
+        scanf("%lf", &TE[i]);
+    }
+    clearInputBuffer();
+
+    printf("Apply impact power degradation (Part 2-C)? (y/n): ");
+    char c = getchar(); clearInputBuffer();
+    int useGamma = (c == 'y' || c == 'Y');
+
+    BattleResult result;
+    runAdvancedBattle(&b, escorts, s->N, TB, TE, useGamma, &result);
+
+    if (result.battleshipSunk)
+        printf("\nBattleship SUNK. Contributing hits: %d, final blow by escort %d.\n",
+               result.numContributors, result.sunkByEscortId);
+    else {
+        int destroyedCount = 0;
+        for (int i = 0; i < s->N; i++) if (!escorts[i].alive) destroyedCount++;
+
+        printf("\nBattleship survived. Damage taken: %.1f%%. Escorts destroyed: %d / %d. Total shots fired by B: %d. Duration: %.2f s.\n",
+               result.finalDamageOnB * 100, destroyedCount, s->N, result.numHits, result.battleDuration);
+    } 
+
+    saveBattleResult("p2bc_result.txt", &result);
+    saveFinalConditions("p2bc_result.txt", &b, escorts, s->N);
+    printf("\nPress Enter to continue..."); getchar();
+}
 static void showInstructions(void) {
     printf("\n----- Instructions -----\n");
     printf("Stationary Battleship (B) vs many stationary Escort ships (E).\n");
@@ -188,7 +228,7 @@ void runMainMenu(void) {
     while (choice != 5) {
         printf("\n===== Advanced Naval Battle Simulator =====\n");
         printf("1. Setup\n2. Run Part 1-A (single battle)\n3. Run Part 1-B (moving battleship)\n");
-        printf("4. Run Part 1-C (cumulative damage)\n5. Exit\n6. Instructions\n7. Statistics\n8. Run Part 2-A (reload + strategy) \nChoice: ");
+        printf("4. Run Part 1-C (cumulative damage)\n5. Exit\n6. Instructions\n7. Statistics\n8. Run Part 2-A (reload + strategy) \n9. Run Part 2-B/C (repeated fire + decay)\nChoice: ");
         int r = scanf("%d", &choice);
         if (r == EOF) { printf("\nInput ended.\n"); return; }
         if (r != 1) { clearInputBuffer(); continue; }
@@ -202,6 +242,7 @@ void runMainMenu(void) {
             case 6: showInstructions(); choice = -1; break;
             case 7: showStatistics(); choice = -1; break;
 	    case 8: doPart2A(&s); choice = -1; break;
+	    case 9: doPart2BC (&s); choice = -1; break;
             default: printf("Invalid choice.\n");
         }
     }
