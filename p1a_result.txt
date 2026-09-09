@@ -1,0 +1,15 @@
+===== BATTLE RESULT =====
+
+Battleship: SUNK
+Final blow by Escort ID: 3
+Total contributing escort hits: 1
+Contributor escort IDs: 3 
+
+===== FINAL CONDITIONS =====
+Battleship alive: no | damage taken: 1.000
+Escort ships alive: 5 / 5
+  Escort #0: alive
+  Escort #1: alive
+  Escort #2: alive
+  Escort #3: alive
+  Escort #4: alive
